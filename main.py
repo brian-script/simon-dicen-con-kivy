@@ -24,10 +24,10 @@ class prueba(App):
         grid_layout.bind(size=anchor_conte.setter("size"))
         #area secundaria botones de start y niveles de dificultad
         grid_layout_inferior = GridLayout(
-                cols = 1,
-                rows =1,
+                cols = 2,
+                rows = 1,
                 padding = [50, 50, 50, 50],
-                spacing = [20, 20, 20, 20],
+                spacing = [20],
                 size_hint = (1, 0.3)
                 )
         #label_layout= Label(text="hola que hace", size_hint=(1, 0.3))
@@ -40,7 +40,7 @@ class prueba(App):
         grid_layout.add_widget(Button(text="hola4", size=(tamaño, tamaño), size_hint=(None, None)))
        
         #inicializando botones del area secundria
-        grid_layout_inferior.add_widget(Button(text="hola1"))
+        grid_layout_inferior.add_widget(Button(text="Start"))
         grid_layout_inferior.add_widget(Button(text="hola2"))
 
         anchor_conte.add_widget(grid_layout)
