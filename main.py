@@ -2,6 +2,7 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.anchorlayout import AnchorLayout
 from kivy.uix.button import Button
+from kivy.uix.togglebutton import ToggleButton
 from kivy.uix.label import Label
 from kivy.app import App
 
@@ -24,7 +25,7 @@ class prueba(App):
         grid_layout.bind(size=anchor_conte.setter("size"))
         #area secundaria botones de start y niveles de dificultad
         grid_layout_inferior = GridLayout(
-                cols = 2,
+                cols = 4,
                 rows = 1,
                 padding = [50, 50, 50, 50],
                 spacing = [20],
@@ -41,7 +42,9 @@ class prueba(App):
        
         #inicializando botones del area secundria
         grid_layout_inferior.add_widget(Button(text="Start"))
-        grid_layout_inferior.add_widget(Button(text="hola2"))
+        grid_layout_inferior.add_widget(ToggleButton(text="Facil", group = "Niveles"))
+        grid_layout_inferior.add_widget(ToggleButton(text="Normal", group = "Niveles"))
+        grid_layout_inferior.add_widget(ToggleButton(text="Dificil", group = "Niveles"))
 
         anchor_conte.add_widget(grid_layout)
 
