@@ -33,11 +33,7 @@ class prueba(App):
                 size_hint = (1, 0.3)
                 )     
         
-        #inicializando botones del area principal
-        #grid_layout.add_widget(Button(text="", background_normal = "", background_color = (0, 0.5, 0, 1), size = (tamaño, tamaño), size_hint=(None, None)))
-        #grid_layout.add_widget(Button(text="", background_normal = "", background_color = (0.5, 0, 0, 1), size = (tamaño, tamaño), size_hint=(None, None)))
-        #grid_layout.add_widget(Button(text="", background_normal = "", background_color = (0.6, 0.5, 0, 1), size = (tamaño, tamaño), size_hint=(None, None)))
-        #grid_layout.add_widget(Button(text="", background_normal = "", background_color = (0, 0.3, 0.5, 1), size = (tamaño, tamaño), size_hint=(None, None)))
+        #inicializando botones del area principal 
        
         boton1 = Button(text = "", background_normal = "", background_color = (0, 0.5, 0, 1), size = (tamaño, tamaño), size_hint = (None, None))
         
