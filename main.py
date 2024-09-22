@@ -5,6 +5,7 @@ from kivy.uix.button import Button
 from kivy.uix.togglebutton import ToggleButton
 from kivy.uix.label import Label
 from kivy.app import App
+import logica
 
 class prueba(App):
     def build(self):
@@ -35,21 +36,22 @@ class prueba(App):
 
         
         #inicializando botones del area principal
-        grid_layout.add_widget(Button(text="hola1", size=(tamaño, tamaño), size_hint=(None, None)))
-        grid_layout.add_widget(Button(text="hola2", size=(tamaño, tamaño), size_hint=(None, None)))
-        grid_layout.add_widget(Button(text="hola3", size=(tamaño, tamaño), size_hint=(None, None)))
-        grid_layout.add_widget(Button(text="hola4", size=(tamaño, tamaño), size_hint=(None, None)))
+        grid_layout.add_widget(Button(text="", background_normal = "", background_color = (0, 0.5, 0, 1), size = (tamaño, tamaño), size_hint=(None, None)))
+        grid_layout.add_widget(Button(text="", background_normal = "", background_color = (0.5, 0, 0, 1), size = (tamaño, tamaño), size_hint=(None, None)))
+        grid_layout.add_widget(Button(text="", background_normal = "", background_color = (0.6, 0.5, 0, 1), size = (tamaño, tamaño), size_hint=(None, None)))
+        grid_layout.add_widget(Button(text="", background_normal = "", background_color = (0, 0.3, 0.5, 1), size = (tamaño, tamaño), size_hint=(None, None)))
        
         #inicializando botones del area secundria
-        grid_layout_inferior.add_widget(Button(text="Start"))
-        grid_layout_inferior.add_widget(ToggleButton(text="Facil", group = "Niveles"))
-        grid_layout_inferior.add_widget(ToggleButton(text="Normal", group = "Niveles"))
-        grid_layout_inferior.add_widget(ToggleButton(text="Dificil", group = "Niveles"))
-
+        boton_iniciar = Button(text="Star")
+        boton_iniciar.bind(on_press=self.iniciar)
+        grid_layout_inferior.add_widget(boton_iniciar)
         anchor_conte.add_widget(grid_layout)
 
         contenedor_principal.add_widget(anchor_conte)
         contenedor_principal.add_widget(grid_layout_inferior)
         return contenedor_principal
+
+    def iniciar(self, instance):
+        print("hola")
 
 prueba().run()
