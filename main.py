@@ -41,11 +41,18 @@ class prueba(App):
         grid_layout.add_widget(Button(text="", background_normal = "", background_color = (0.6, 0.5, 0, 1), size = (tamaño, tamaño), size_hint=(None, None)))
         grid_layout.add_widget(Button(text="", background_normal = "", background_color = (0, 0.3, 0.5, 1), size = (tamaño, tamaño), size_hint=(None, None)))
        
+        
+
         #inicializando botones del area secundria
         boton_iniciar = Button(text="Star")
         boton_iniciar.bind(on_press=self.iniciar)
         grid_layout_inferior.add_widget(boton_iniciar)
         anchor_conte.add_widget(grid_layout)
+
+        for nivel in ["Facil", "Normal", "Dificil"]:
+            boton_inferior = ToggleButton(text = nivel, group = "niveles")
+            boton_inferior.bind(on_press = self.dificultad)
+            grid_layout_inferior.add_widget(boton_inferior)
 
         contenedor_principal.add_widget(anchor_conte)
         contenedor_principal.add_widget(grid_layout_inferior)
@@ -53,5 +60,8 @@ class prueba(App):
 
     def iniciar(self, instance):
         print("hola")
+
+    def dificultad(self, instance):
+        print("boton de dificultad")
 
 prueba().run()
