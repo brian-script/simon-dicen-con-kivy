@@ -74,12 +74,15 @@ class prueba(App):
         print("hola")
 
     def dificultad(self, instance):
+        niveles = None
         if instance.state == "down":
             if instance.text == "Facil":
-                print("nivel 1")
+                niveles = 3
             elif instance.text == "Normal":
-                print("nivel 2")
+                niveles = 5
             elif instance.text == "Dificil":
-                print("nivel 3")
+                niveles = 7
+
+            logica.num_random(niveles)
 
 prueba().run()
