@@ -53,12 +53,17 @@ class prueba(App):
         boton_iniciar = Button(text="Star")
         boton_iniciar.bind(on_press=self.iniciar)
         grid_layout_inferior.add_widget(boton_iniciar)
-       
 
-        for nivel in ["Facil", "Normal", "Dificil"]:
-            boton_inferior = ToggleButton(text = nivel, group = "niveles")
-            boton_inferior.bind(on_press = self.dificultad)
-            grid_layout_inferior.add_widget(boton_inferior)
+
+        boton_inferior1 = ToggleButton(text="Facil", group="Niveles", state="down")
+        boton_inferior2 = ToggleButton(text="Normal", group="Niveles")
+        boton_inferior3 = ToggleButton(text="Dificil", group="Niveles")
+
+        boton_inferior1.bind(on_state = self.iniciar)
+
+        grid_layout_inferior.add_widget(boton_inferior1) 
+        grid_layout_inferior.add_widget(boton_inferior2)
+        grid_layout_inferior.add_widget(boton_inferior3)
 
         contenedor_principal.add_widget(anchor_conte)
         contenedor_principal.add_widget(grid_layout_inferior)
