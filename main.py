@@ -61,7 +61,7 @@ class prueba(App):
         ]
         
         for toggles in self.botones:
-            toggles.bind(on_press = self.iniciar)
+            toggles.bind(on_press = self.dificultad)
 
         for toggles in self.botones:
             grid_layout_inferior.add_widget(toggles)
@@ -74,6 +74,12 @@ class prueba(App):
         print("hola")
 
     def dificultad(self, instance):
-        print("boton de dificultad")
+        if instance.state == "down":
+            if instance.text == "Facil":
+                print("nivel 1")
+            elif instance.text == "Normal":
+                print("nivel 2")
+            elif instance.text == "Dificil":
+                print("nivel 3")
 
 prueba().run()
