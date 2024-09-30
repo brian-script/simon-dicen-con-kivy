@@ -6,27 +6,20 @@ from kivy.uix.togglebutton import ToggleButton
 from kivy.app import App
 import logica
 
+aciertos = []
+
 class prueba(App):
     def __init__(self, **kwargs):
-        super(prueba, self).__init__(**kwargs)  # Llama al constructor de la clase base
-        self.botones0 = []  # Inicializa la lista de botones
-        self.niveles = None  # Inicializa niveles
+        super(prueba, self).__init__(**kwargs)
+        self.botones0 = []
+        self.niveles = None
+        self.indice = 0 
 
     def build(self):
-        # Cuerpo de la aplicación
         contenedor_principal = BoxLayout(orientation="vertical", spacing=10, padding=[20, 20, 20, 20])
-        
-        # Área principal y el más grande
         anchor_conte = AnchorLayout(size_hint=(1, 0.7))
         tamaño = 200
-        grid_layout = GridLayout(
-            cols=2,
-            rows=2,
-            size_hint=(None, None),
-            size=(tamaño * 2 + 10, tamaño * 2 + 10),
-            padding=[10, 10],
-            spacing=[10, 10]
-        )
+        grid_layout = GridLayout(cols=2, rows=2, size_hint=(None, None), size=(tamaño * 2 + 10, tamaño * 2 + 10), padding=[10, 10], spacing=[10, 10])
         grid_layout.bind(size=anchor_conte.setter("size"))
         
         # Inicializando botones del área principal 
@@ -36,12 +29,12 @@ class prueba(App):
         boton4 = Button(text="", background_normal="", background_color=(0, 0.3, 0.5, 1), size=(tamaño, tamaño), size_hint=(None, None))
         
         self.botones0.extend([boton1, boton2, boton3, boton4])
+        
+        for boton in self.botones0:
+            boton.bind(on_press=self.registrar_jugada)
+            grid_layout.add_widget(boton)
 
-        grid_layout.add_widget(boton1)
-        grid_layout.add_widget(boton2)
-        grid_layout.add_widget(boton3)
-        grid_layout.add_widget(boton4)
-        anchor_conte.add_widget(grid_layout) 
+        anchor_conte.add_widget(grid_layout)
 
         # Inicializando botones del área secundaria
         grid_layout_inferior = GridLayout(cols=4, rows=1, padding=[50, 50, 50, 50], spacing=[20], size_hint=(1, 0.3))
@@ -53,12 +46,10 @@ class prueba(App):
             ToggleButton(text="Facil", group="Niveles"),
             ToggleButton(text="Normal", group="Niveles"),
             ToggleButton(text="Dificil", group="Niveles")
-        ]
-        
-        for toggles in self.botones:
-            toggles.bind(on_press=self.dificultad)
+                    ]
 
         for toggles in self.botones:
+            toggles.bind(on_press=self.dificultad)
             grid_layout_inferior.add_widget(toggles)
 
         contenedor_principal.add_widget(anchor_conte)
@@ -67,7 +58,6 @@ class prueba(App):
 
     def iniciar(self, instance):
         print("Iniciando juego")
-        # Usa el valor de niveles que se ha asignado en dificultad
         if self.niveles is not None:
             patron = logica.num_random(self.niveles)
             logica.iluminar_patron(self, patron)
@@ -83,5 +73,10 @@ class prueba(App):
             elif instance.text == "Dificil":
                 self.niveles = 7
 
-prueba().run()
+    def registrar_jugada(self, instance):
+        if instance in self.botones0:
+            index = self.botones0.index(instance)
+            aciertos.append(index)
+            logica.comparar_aciertos(self, logica.patron, aciertos)
 
+prueba().run()
